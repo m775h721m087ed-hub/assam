@@ -85,7 +85,7 @@ img, .project-img-wrapper, .service-card, .container, .row, section {
 
         /* Service cards */
         .service-card{ background: var(--glass); border:1px solid var(--glass-border); padding:30px; border-radius:16px; transition:0.4s; height:100%; cursor:pointer;}
-        .service-card:hover{ background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border-color:var(--accent); transform:translateY(-8px);}
+        .service-card:hover{ background: linear-gradient(135deg, rgba(154, 191, 19, 0.03), rgba(255,255,255,0.01)); border-color:var(--accent); transform:translateY(-8px);}
         .service-icon{ font-size:3.2rem; color:var(--accent); margin-bottom:20px; transition:0.4s; }
 
         /* Projects */
@@ -97,12 +97,12 @@ img, .project-img-wrapper, .service-card, .container, .row, section {
 
         /* Stats */
         .stats-section{ background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80'); background-attachment: fixed; background-size:cover; position:relative; padding:100px 0; }
-        .stats-overlay{ position:absolute; top:0; left:0; width:100%; height:100%; background: rgba(4,15,22,0.9); }
+        .stats-overlay{ position:absolute; top:0; left:0; width:100%; height:100%; background: rgba(22, 5, 4, 0.9); }
         .stat-item h3{ font-size:3.2rem; color: var(--accent); font-weight:900; }
         .stat-item p{ color:#ccc; }
 
         /* Footer */
-        footer{ background-color:#02080c; padding-top:80px; border-top:3px solid var(--accent); }
+        footer{ background-color:#0b0c02; padding-top:80px; border-top:3px solid var(--accent); }
         .footer-link{ color:#aaa; display:block; margin-bottom:10px; transition:0.3s; }
         .footer-link:hover{ color:var(--accent); padding-right:10px; }
 
@@ -184,6 +184,76 @@ img, .project-img-wrapper, .service-card, .container, .row, section {
     </div>
 
     <!-- ABOUT -->
+     <!-- قسم كلمة المدير -->
+<section id="manager" class="section">
+    <h2>كلمة المدير</h2>
+
+    <div style="
+        background: #bec7d3;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 3px 15px rgba(255, 253, 253, 0.12)
+        font-size: 19px;
+        line-height: 2;
+        color: #222;
+    ">
+
+        <!-- صندوق الصورة + بداية النص -->
+        <div style="display: flex; align-items: flex-start; margin-bottom: 20px;">
+
+            <!-- صورة المدير بإطار ذهبي -->
+            <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&w=500&q=60"
+                 style="
+                    width: 130px;
+                    height: 130px;
+                    object-fit: cover;
+                    border-radius: 10px;
+                    margin-left: 18px;
+                    border: 4px solid #c5a253;
+                    box-shadow: 0 0 10px rgb(255, 255, 255);
+                 ">
+
+            <!-- بداية النص بجانب الصورة -->
+            <p style="margin: 0; font-weight: 600;">
+                بسم الله الرحمن الرحيم  
+                <br><br>
+                إنه لمن دواعي الفخر والاعتزاز أن نقدم لكم مكتب 
+                <strong>عصام هادي الهيصمي للخدمات والمقاولات العامة</strong>؛
+                وهو كيان تأسس على مبادئ الثقة، والإتقان، والعمل المؤسسي المنظم، 
+                بهدف تقديم خدمات هندسية وتنفيذية بمعايير تتوافق مع أعلى مستويات الجودة.
+            </p>
+        </div>
+
+        <!-- بقية النص تحت الصورة -->
+        <p>
+            لقد حرصنا منذ تأسيس المكتب على بناء منهجية عمل واضحة ترتكز على الانضباط المهني 
+            والالتزام الصارم بمعايير السلامة والجودة، مما مكننا – بفضل الله – من تنفيذ مشاريع متعددة 
+            بفاعلية عالية وكفاءة متميزة.
+            <br><br>
+            إن تطوير الخدمات ورفع مستوى الأداء ليس خياراً لدينا، بل هو التزام نسعى لتحقيقه 
+            يومًا بعد يوم، مدفوعين برؤية مستقبلية تجعل من مكتبنا شريكاً موثوقاً في مشاريع 
+            البناء والتطوير، وقوة فاعلة في تحقيق تطلعات عملائنا وشركائنا.
+            <br><br>
+            ونؤكد لكم أننا مستمرون في تطوير قدراتنا، وتوسيع نطاق أعمالنا، 
+            وتعزيز بيئة العمل الداخلية لضمان تقديم حلول مبتكرة تتناسب مع حجم الطموحات 
+            والمتغيرات المتسارعة في قطاع المقاولات.
+            <br><br>
+            <strong>والله الموفق،،</strong>
+        </p>
+
+        <!-- توقيع المدير -->
+        <div style="margin-top: 20px; text-align: left;">
+            <p style="font-size: 18px; font-weight: bold; margin: 0;">
+                المدير العام
+                <br>
+                <span style="font-size: 20px; color: #006c5f;">عصام هادي الهيصمي</span>
+            </p>
+
+          
+        </div>
+
+    </div>
+</section>
     <section id="about" class="section-padding" style="position:relative;">
         <div class="container">
             <div class="row align-items-center">
@@ -416,15 +486,15 @@ img, .project-img-wrapper, .service-card, .container, .row, section {
                             <h3 class="mb-4 text-warning">معلومات التواصل</h3>
                             <div class="mb-4">
                                 <i class="fas fa-map-marker-alt text-warning me-2 ms-2"></i>
-                                <span>اليمن، مأرب، مفرق الصحن،</span>
+                                <span>اليمن، مأرب، مفرق الصحن</span>
                             </div>
                             <div class="mb-4">
                                 <i class="fas fa-phone text-warning me-2 ms-2"></i>
-                                <span>+967 777 000 000</span>
+                                <span>+967 781053989 - 730987772</span>
                             </div>
                             <div class="mb-4">
                                 <i class="fas fa-envelope text-warning me-2 ms-2"></i>
-                                <span>info@isam-office.com</span>
+                                <span>assam7711560119@gmail.com</span>
                             </div>
                             <div class="mt-auto">
                                 <a href="#" class="text-white me-3 fs-5"><i class="fab fa-twitter"></i></a>
@@ -497,7 +567,7 @@ img, .project-img-wrapper, .service-card, .container, .row, section {
 
     <!-- Floating -->
     <div class="float-contact">
-        <a href="https://wa.me/967777000000" class="float-btn whatsapp" target="_blank" title="واتساب">
+        <a href="https://wa.me/781053989" class="float-btn whatsapp" target="_blank" title="واتساب">
             <i class="fab fa-whatsapp"></i>
         </a>
         <a href="#" class="float-btn" id="scrollTop" title="للأعلى">
