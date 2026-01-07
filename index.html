@@ -512,8 +512,12 @@ img, .project-img-wrapper, .service-card, .container, .row, section {
                         </div>
                         <div class="col-lg-7 p-5">
                             <h3 class="mb-4 text-white">أرسل لنا رسالة</h3>
+
+                            <!-- Success/Error message container (will be shown inline after submit) -->
+                            <div id="contactMsg" aria-live="polite" style="display:none;"></div>
+
                             <!-- formsubmit.co used for demo. Replace with your email or backend -->
-                            <form action="https://formspree.io/f/xqeavrbd" method="POST">
+                            <form id="contactForm" action="https://formspree.io/f/xqeavrbd" method="POST" novalidate>
                                 <input type="hidden" name="_subject" value="رسالة من موقع مكتب الهيصمي">
                                 <input type="hidden" name="_language" value="ar">
                                 <div class="row g-3">
@@ -527,9 +531,10 @@ img, .project-img-wrapper, .service-card, .container, .row, section {
                                         <textarea name="message" class="form-control bg-transparent text-white" rows="4" placeholder="الرسالة" style="border-color:#333;" required></textarea>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-gold w-100" type="submit">إرسال الآن</button>
+                                        <button id="contactSubmit" class="btn btn-gold w-100" type="submit">إرسال الآن</button>
                                     </div>
                             
+
                                     
                                 </div>
                             </form>
@@ -678,7 +683,7 @@ img, .project-img-wrapper, .service-card, .container, .row, section {
             },
             strategy: {
                 title: 'التخطيط الاستراتيجي',
-                excerpt: 'خدمات وضع الاستراتيجيات التشغيلية والتجارية لتحقيق نمو مستدام ومؤشرات أداء واضحة.',
+                excerpt: 'خدمات وضع الاستراتيجيات التشغيلية والتجارية لتحقيق نمو ��ستدام ومؤشرات أداء واضحة.',
                 content: `
                     <p style="color:#ccc; line-height:1.9;">
                         نعمل على تحليل السوق، وضع خرائط طريق استراتيجية، وتصميم خطط تنفيذ قابلة للقياس، مع متابعة دورية لضمان تحقيق الأهداف.
@@ -854,6 +859,81 @@ img, .project-img-wrapper, .service-card, .container, .row, section {
                 // let hash link do its job
             });
         });
+
+        // ------------------------
+        // AJAX contact form submit
+        // ------------------------
+        (function(){
+            const form = document.getElementById('contactForm');
+            if(!form) return;
+            const submitBtn = document.getElementById('contactSubmit');
+            const msgBox = document.getElementById('contactMsg');
+
+            form.addEventListener('submit', async function(e){
+                e.preventDefault();
+
+                // Basic HTML5 validity check
+                if(!form.checkValidity()){
+                    form.reportValidity();
+                    return;
+                }
+
+                // Prepare UI state
+                submitBtn.disabled = true;
+                const originalBtnText = submitBtn.innerHTML;
+                submitBtn.innerHTML = 'جارٍ الإرسال...';
+
+                // Collect data
+                const formData = new FormData(form);
+
+                try {
+                    const action = form.getAttribute('action') || window.location.href;
+                    const res = await fetch(action, {
+                        method: form.getAttribute('method') || 'POST',
+                        headers: {
+                            'Accept': 'application/json'
+                        },
+                        body: formData
+                    });
+
+                    if(res.ok){
+                        // Show success message inline (no navigation)
+                        msgBox.style.display = 'block';
+                        msgBox.innerHTML = `
+                            <div class="alert alert-success" role="alert" style="background:#dff0d8; color:#155724; border:none;">
+                                <strong>تم إرسال الرسالة بنجاح.</strong> سنقوم بالتواصل معك في أقرب وقت ممكن. شكرًا لتواصلكم.
+                            </div>
+                        `;
+                        // reset form
+                        form.reset();
+                    } else {
+                        // Try to parse JSON for errors (Formspree returns JSON)
+                        let data = {};
+                        try { data = await res.json(); } catch(err){ data = {}; }
+                        const errorMsg = (data && data.error) ? data.error : 'حدث خطأ أثناء إرسال الرسالة. الرجاء المحاولة لاحقًا.';
+                        msgBox.style.display = 'block';
+                        msgBox.innerHTML = `
+                            <div class="alert alert-danger" role="alert" style="background:#f8d7da; color:#721c24; border:none;">
+                                <strong>فشل الإرسال:</strong> ${errorMsg}
+                            </div>
+                        `;
+                    }
+                } catch (err) {
+                    msgBox.style.display = 'block';
+                    msgBox.innerHTML = `
+                        <div class="alert alert-danger" role="alert" style="background:#f8d7da; color:#721c24; border:none;">
+                            <strong>فشل الاتصال:</strong> لم نتمكن من إرسال الرسالة الآن. الرجاء التحقق من اتصال الإنترنت أو المحاولة لاحقًا.
+                        </div>
+                    `;
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                    // for accessibility, focus the message box so screen readers announce it
+                    msgBox.setAttribute('tabindex', '-1');
+                    msgBox.focus();
+                }
+            });
+        })();
     </script>
 </body>
 </html>
